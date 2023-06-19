@@ -1,4 +1,5 @@
 <div>
-    {{-- Care about people's approval and you will be their prisoner. --}}
-    send
+    <div class="chatbox_footer">
+        
+    </div>
 </div>
