@@ -34,7 +34,7 @@
         </div>
     </div>
     <div class="chatbox_body">
-        <div class="msg_body">
+        <div class="msg_body msg_body_receiver">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, autem! Pariatur deserunt dolore asperiores corrupti dolorum! Aliquam veritatis nihil dolor, dicta eius repudiandae possimus amet dignissimos saepe. Quos, velit rerum!
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque totam, cupiditate magni ab sit veniam porro hic fugit eligendi quos! Esse vitae repellat officia velit nemo, eum optio amet maxime!
             <div class="msg_body_footer">
@@ -48,7 +48,7 @@
                 </div>
             </div>
         </div>
-        <div class="msg_body">
+        <div class="msg_body msg_body_me">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, autem! Pariatur deserunt dolore asperiores corrupti dolorum! Aliquam veritatis nihil dolor, dicta eius repudiandae possimus amet dignissimos saepe. Quos, velit rerum!
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque totam, cupiditate magni ab sit veniam porro hic fugit eligendi quos! Esse vitae repellat officia velit nemo, eum optio amet maxime!
             <div class="msg_body_footer">
@@ -63,7 +63,5 @@
             </div>
         </div>
     </div>
-    <div class="chatbox_footer">
-        Footer
-    </div>
+
 </div>
