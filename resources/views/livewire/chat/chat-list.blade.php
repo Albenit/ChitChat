@@ -13,7 +13,7 @@
             <span>You dont have any conversation</span>
         @else
             @foreach ($conversations as $item)
-                <div class="chatlist_item" wire:click="$emit('chatUserSelected', {{ $item }}, {{ $this->getChatUserInstance($item, 'id') }})">
+                <div class="chatlist_item" wire:key="{{$item->id}}" wire:click="$emit('chatUserSelected', {{ $item }}, {{ $this->getChatUserInstance($item, 'id') }})">
                     <div class="chatlist_img_container">
                         <img class="img"
                             src="https://ui-avatars.com/api/?name={{ $this->getChatUserInstance($item, $name = 'name') }}"

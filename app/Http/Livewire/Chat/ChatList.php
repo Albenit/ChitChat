@@ -15,7 +15,7 @@ class ChatList extends Component
     public $name;
     public $selectedCoversation;
 
-    protected $listeners = ['chatUserSelected'];
+    protected $listeners = ['chatUserSelected','refresh' => '$refresh'];
 
     public function chatUserSelected(Conversation $conversation, $receiverId){
 
@@ -25,6 +25,8 @@ class ChatList extends Component
         $this->receiverInstance = User::find($receiverId);
 
         $this->emitTo('chat.chatbox','loadConversation',$this->selectedCoversation,$this->receiverInstance);
+
+        $this->emitTo('chat.send-message','updateSendMessage',$this->selectedCoversation,$this->receiverInstance);
 
 
         
