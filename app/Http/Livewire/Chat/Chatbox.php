@@ -15,7 +15,12 @@ class Chatbox extends Component
     public $messages;
     public $paginateVar = 10;
 
-    protected $listeners = ['loadConversation'];
+    protected $listeners = ['loadConversation','pushMessage'];
+
+    public function pushMessage($messageId){
+        $nemMessage = Message::find($messageId);
+        $this->messages->push($nemMessage);
+    }
 
     public function loadConversation(Conversation $conversation, User $receiver){
 
@@ -25,8 +30,6 @@ class Chatbox extends Component
         $this->messages_count = Message::where('conversation_id',$this->selectedcoversations->id)->count();
 
         $this->messages = Message::where('conversation_id',$this->selectedcoversations->id)
-        ->skip($this->messages_count - $this->paginateVar)
-        ->take($this->paginateVar)
         ->get();
 
         $this->dispatchBrowserEvent('chatSelected');

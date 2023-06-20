@@ -38,9 +38,7 @@
         </div>
         <div class="chatbox_body">
             @foreach ($messages as $message)
-                
-            @endforeach
-            <div class="msg_body msg_body_receiver">
+            <div wire:key="{{$message->id}}" class="msg_body  {{Auth::user()->id == $message->sender_id ? 'msg_body_me' : 'msg_body_receiver'}}">
                     {{$message->body}}
                 <div class="msg_body_footer">
                     <div class="date">
@@ -53,6 +51,7 @@
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
     @else
         <div class="fs-4 text-center text-primary mt-5">
