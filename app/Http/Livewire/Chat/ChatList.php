@@ -22,11 +22,11 @@ class ChatList extends Component
 
         $this->selectedCoversation = $conversation;
 
-        $this->receiverInstance = User::find($receiverId);
+        $receiverInstance = User::find($receiverId);
 
-        $this->emitTo('chat.chatbox','loadConversation',$this->selectedCoversation,$this->receiverInstance);
+        $this->emitTo('chat.chatbox','loadConversation',$this->selectedCoversation,$receiverInstance);
 
-        $this->emitTo('chat.send-message','updateSendMessage',$this->selectedCoversation,$this->receiverInstance);
+        $this->emitTo('chat.send-message','updateSendMessage',$this->selectedCoversation,$receiverInstance);
 
 
         
