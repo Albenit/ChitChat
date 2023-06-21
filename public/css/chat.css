@@ -305,7 +305,7 @@ body {
       flex-wrap: nowrap;
   background-color: white;
 }
-.chat_box_container .chatbox_footer .custom_form_group {
+.chat_box_container .chatbox_footer .costum_form_group {
   margin: auto 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -315,9 +315,9 @@ body {
   width: 100%;
   padding: 2px 6px;
 }
-.chat_box_container .chatbox_footer .custom_form_group .control {
+.chat_box_container .chatbox_footer .costum_form_group .control {
   margin: auto 0;
-  width: 90%;
+  width: 90% !important;
   border: 0;
   outline: none;
   -webkit-box-shadow: 0;
@@ -325,13 +325,13 @@ body {
   background-color: rgba(226, 226, 226, 0.87);
   border-radius: 11px;
 }
-.chat_box_container .chatbox_footer .custom_form_group .control:focus {
+.chat_box_container .chatbox_footer .costum_form_group .control:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
   outline: none;
   border-style: 0;
 }
-.chat_box_container .chatbox_footer .custom_form_group .submit {
+.chat_box_container .chatbox_footer .costum_form_group .submit {
   font-size: 18px;
   font-weight: bold;
   padding: 4px 5px;

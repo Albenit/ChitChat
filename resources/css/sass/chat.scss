@@ -312,7 +312,7 @@ body {
     display: flex;
     flex-wrap: nowrap;
     background-color: white;
-    .custom_form_group {
+    .costum_form_group {
       margin: auto 0;
 
       display: flex;
@@ -322,7 +322,7 @@ body {
 
       .control {
         margin: auto 0;
-        width: 90%;
+        width: 90% !important;
         border: 0;
         outline: none;
         box-shadow: 0;
