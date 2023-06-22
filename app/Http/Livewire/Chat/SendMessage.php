@@ -46,7 +46,7 @@ class SendMessage extends Component
         $this->reset('body');
 
         $this->emitSelf('dispatchMessageSent');
-    }
+    }  
 
     public function dispatchMessageSent(){
         broadcast(new MessageSent(Auth::user(),$this->message,$this->selectedConversation,$this->receiverInstance));
