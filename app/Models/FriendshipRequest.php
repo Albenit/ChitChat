@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class FriendshipRequest extends Model
+{
+    use HasFactory;
+
+    protected $table = 'friendship_requests';
+
+    protected $fillable = [
+        'request_from',
+        'request_to',
+        'status'
+    ];
+}

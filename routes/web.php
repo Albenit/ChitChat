@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Chat\CreateChat;
 use App\Http\Livewire\Chat\Main;
+use App\Http\Livewire\Friendship;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 Route::get('/dashboard', function () {
@@ -25,6 +26,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/users',CreateChat::class)->name('users');
+Route::get('/friendship',Friendship::class)->name('friendship');
 Route::get('/chat/{key?}',Main::class)->name('chat');
 
 Route::middleware('auth')->group(function () {

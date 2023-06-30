@@ -32,10 +32,6 @@
                                 {{ $item->messages->last()->body }}
                             </div>
 
-                            <div class="unread_count">
-                                56
-                            </div>
-
                         </div>
                     </div>
                 </div>
