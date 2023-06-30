@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Chat;
 
 use App\Events\MessageSent;
+use App\Events\MessageRead;
 use App\Models\Conversation;
 use App\Models\Message;
 use App\Models\User;
@@ -27,12 +28,49 @@ class Chatbox extends Component
         // dd($auth_id);
         return [
             "echo-private:chat.{$auth_id},MessageSent" => 'broadcastedMessageReceived',
-            'loadConversation','pushMessage','loadmore','updateHeight'
+            "echo-private:chat.{$auth_id},MessageRead" => 'broadcastedMessageRead',
+            'loadConversation','pushMessage','loadmore','updateHeight','brodcastMessageRead','resetComponent'
         ];
     }
 
+    public function resetComponent(){
+        $this->selectedcoversations = null;
+        $this->receiverInstance = null;
+
+    }
+
+
+    public function broadcastedMessageRead($event){
+        if($this->selectedcoversations){
+            if((int) $this->selectedcoversations->id === (int) $event['conversation_id']){
+                $this->dispatchBrowserEvent('markMessageAsRead');
+            }
+        }
+    }
+
     public function broadcastedMessageReceived($event){
-        dd($event);
+
+        $this->emitTo('chat.chat-list','refresh');
+
+        $brodcastedMessage = Message::find($event['message']);
+
+        if($this->selectedcoversations){
+            if((int) $this->selectedcoversations->id === (int) $event['conversation_id']){
+                $brodcastedMessage->read = 1;
+                $brodcastedMessage->save();
+
+                $this->pushMessage($brodcastedMessage->id);
+
+                $this->emitSelf('brodcastMessageRead');
+
+            }
+        }
+
+
+    }
+
+    public function brodcastMessageRead(){
+        broadcast(new MessageRead($this->selectedcoversations->id,$this->receiverInstance->id));
     }
 
     public function pushMessage($messageId){
@@ -72,6 +110,13 @@ class Chatbox extends Component
         
 
         $this->dispatchBrowserEvent('chatSelected');
+
+        Message::where('conversation_id',$this->selectedcoversations->id)
+        ->where('receiver_id',Auth::user()->id)
+        ->where('read',0)
+        ->update(['read' => 1]);
+
+        $this->emitSelf('brodcastMessageRead');
 
     }
 

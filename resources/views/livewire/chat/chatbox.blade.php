@@ -44,19 +44,22 @@
         </div>
         <div class="chatbox_body">
             @foreach ($messages as $message)
-                <div wire:key="{{ $message->id }}"
-                    class="msg_body  {{ Auth::user()->id == $message->sender_id ? 'msg_body_me' : 'msg_body_receiver' }}" style="width: 80%;max-width:80%;max-width:max-content">
+                <div class="msg_body  {{ Auth::user()->id == $message->sender_id ? 'msg_body_me' : 'msg_body_receiver' }}" style="width: 80%;max-width:80%;max-width:max-content">
                     {{ $message->body }}
                     <div class="msg_body_footer">
                         <div class="date">
                             {{ $message->created_at->format('m: i a') }}
                         </div>
                         <div class="read">
-                            <svg class="svg" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                <path
-                                    d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
-                            </svg>
+                            @if ($message->user->id === Auth::user()->id)
+
+                                @if ($message->read == 0)
+                                        <i class="bi bi-check2 status_tick"></i>
+                                    @else
+                                        <i class="bi bi-check2-all text-primary status_tick"></i>
+                                @endif
+                                
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -89,5 +92,21 @@
         window.addEventListener('rowChatToBottom', event => {
             $('.chatbox_body').scrollTop($('.chatbox_body')[0].scrollHeight)
         });
+    </script>
+
+    <script>
+        $(document).on('click','.return',function(){
+            window.livewire.emit('resetComponent')
+        })
+    </script>
+    <script>
+        window.addEventListener('markMessageAsRead', event => {
+            var value = document.querySelectorAll('.status_tick')
+
+            value.array.forEach(element,index => {
+                element.classList.remove('bi bi-check2')
+                element.classList.add('bi bi-check2-all','text-primary')
+            });
+        })
     </script>
 </div>
