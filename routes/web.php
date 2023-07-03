@@ -22,10 +22,9 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return redirect()->route('chat');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/users',CreateChat::class)->name('users');
 Route::get('/friendship',Friendship::class)->name('friendship');
 Route::get('/chat/{key?}',Main::class)->name('chat');
 

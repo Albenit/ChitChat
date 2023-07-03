@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('friendships', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_one');
-            $table->integer('user_two');
+            $table->integer('sender_id');
+            $table->integer('recipient_id');
+            $table->string('status');
             $table->timestamps();
         });
     }
