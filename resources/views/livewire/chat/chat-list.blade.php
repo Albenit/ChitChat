@@ -29,7 +29,7 @@
                         <div class="bottom_row">
 
                             <div class="message_body text-truncate">
-                                {{ $item->messages->last()->body }}
+                                {{ $item->messages->last()->body ?? 'Sey Hello to ' . $this->getChatUserInstance($item, $name = 'name')}}
                             </div>
 
                         </div>

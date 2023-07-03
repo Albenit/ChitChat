@@ -12,7 +12,8 @@ class Friendship extends Model
     protected $table = 'friendships';
 
     protected $fillable = [
-        'user_one',
-        'user_two'
+        'sender_id',
+        'recipient_id',
+        'status'
     ];
 }
