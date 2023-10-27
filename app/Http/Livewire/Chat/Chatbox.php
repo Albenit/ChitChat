@@ -93,7 +93,7 @@ class Chatbox extends Component
 
     public function updateHeight($height){
         $this->height = $height;
-        
+
     }
 
     public function loadConversation(Conversation $conversation, User $receiver){
@@ -107,7 +107,7 @@ class Chatbox extends Component
         ->skip($this->messages_count - $this->paginateVar)
         ->take($this->paginateVar)->get();
 
-        
+
 
         $this->dispatchBrowserEvent('chatSelected');
 

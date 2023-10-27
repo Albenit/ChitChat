@@ -16,7 +16,7 @@ use Illuminate\Queue\SerializesModels;
 class MessageSent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
- 
+
 public $user;
 public $message;
 public $conversation;
@@ -31,7 +31,7 @@ public $receiver;
         $this->receiver= $receiver;
     }
 
-  
+
     public function broadcastWith( )
     {
 

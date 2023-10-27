@@ -41,7 +41,7 @@ class SendMessage extends Component
             'receiver_id' => $this->receiverInstance->id,
             'body' => $this->body
         ]);
-        
+
         $this->selectedConversation->last_time_message = $this->message->created_at;
         $this->selectedConversation->save();
 
@@ -52,7 +52,7 @@ class SendMessage extends Component
         $this->reset('body');
 
         $this->emitSelf('dispatchMessageSent');
-    }  
+    }
 
     public function dispatchMessageSent(){
         broadcast(new MessageSent(Auth::user(),$this->message,$this->selectedConversation,$this->receiverInstance));

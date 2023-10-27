@@ -18,15 +18,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect()->route('login');
-});
-
-Route::get('/dashboard', function () {
-    return redirect()->route('chat');
+    return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+
 Route::get('/friendship',Friendship::class)->name('friendship');
-Route::get('/chat/{key?}',Main::class)->name('chat');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
