@@ -11,9 +11,12 @@
                 ->where('sender_id',$user->id);
             })->first();
             @endphp
-        <div class="list-group-item list-group-item-action" >
-            <span>{{$user->name}}</span>
-                <span class="justify-content-end d-flex">
+        <div class="list-group-item list-group-item-action row" >
+            <div class="col">
+                <span>{{$user->name}}</span>
+            </div>
+            <div class="col-auto">
+                <div class="justify-content-end d-flex">
                     @if ($friendship)
                         @if ($friendship->status == 'pending')
                             @if ($friendship->sender_id == Auth::user()->id)
@@ -30,7 +33,8 @@
                             Add Friend
                         </button>
                     @endif
-                </span>
+                </div>
+            </div>
             </div>
         @endforeach
     </ul>
