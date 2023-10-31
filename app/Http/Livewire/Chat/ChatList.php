@@ -14,8 +14,14 @@ class ChatList extends Component
     public $receiverInstance;
     public $name;
     public $selectedCoversation;
+    public $searchNewCoverUser;
+    public $searchedUsersForNewConver = [];
 
     protected $listeners = ['chatUserSelected','refresh' => '$refresh','resetComponent'];
+
+    protected $rules = [
+        'searchNewCoverUser' => 'min:3', // Define your validation rules here
+    ];
 
 
     public function resetComponent(){
@@ -36,7 +42,7 @@ class ChatList extends Component
         $this->emitTo('chat.send-message','updateSendMessage',$this->selectedCoversation,$receiverInstance);
 
 
-        
+
     }
 
     public function getChatUserInstance(Conversation $conversation, $request){
@@ -63,6 +69,9 @@ class ChatList extends Component
 
     public function render()
     {
+        if(isset($this->searchNewCoverUser)){
+            $this->searchedUsersForNewConver = User::where('id','<>',Auth::user()->id)->where('name','LIKE',"%".$this->searchNewCoverUser."%")->get();
+        }
         return view('livewire.chat.chat-list');
     }
 }

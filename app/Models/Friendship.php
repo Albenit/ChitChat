@@ -16,4 +16,11 @@ class Friendship extends Model
         'recipient_id',
         'status'
     ];
+
+    public function senderUserName(){
+        return $this->belongsTo(User::class,'sender_id','id');
+    }
+    public function recipientUserName(){
+        return $this->belongsTo(User::class,'recipient_id','id');
+    }
 }

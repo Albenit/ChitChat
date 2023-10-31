@@ -45,7 +45,7 @@ body {
 }
 @media (min-width: 769px) {
   .chat_container {
-    top: 6%;
+    top: 8%;
     height: 89%;
     width: 98%;
     left: 1%;
@@ -55,7 +55,7 @@ body {
   .chat_container {
     position: fixed;
     width: 85%;
-    left: 8.5%;
+    left: 7.7%;
     padding: 0px;
   }
 }
