@@ -6,6 +6,7 @@ use App\Models\Conversation;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Carbon\Carbon;
 
 
 class ChatList extends Component
@@ -14,8 +15,8 @@ class ChatList extends Component
     public $receiverInstance;
     public $name;
     public $selectedCoversation;
-    public $searchNewCoverUser;
-    public $searchedUsersForNewConver = [];
+    public $search_users;
+    public $users_without_conversation;
 
     protected $listeners = ['chatUserSelected','refresh' => '$refresh','resetComponent'];
 
@@ -58,7 +59,35 @@ class ChatList extends Component
         }
     }
 
-    public function mount(){
+    public function createNewConversation($user_id) {
+
+        $conversation = Conversation::where(function($query) use ($user_id){
+            $query->where('sender_id',Auth::user()->id)
+            ->where('receiver_id',$user_id);
+        })->orWhere(function($query) use ($user_id){
+            $query->where('sender_id',$user_id)
+            ->where('receiver_id',Auth::user()->id);
+        })->first();
+
+        if(!$conversation){
+            Conversation::create([
+                'receiver_id' => $user_id,
+                'sender_id' => Auth::user()->id,
+                'last_time_message' => Carbon::now()
+            ]);
+            $conversation = Conversation::where('sender_id',Auth::user()->id)->where('receiver_id',$user_id)->first();
+        }
+
+
+        $this->emit('chatUserSelected',$conversation, $user_id);
+
+        $this->returnConversation();
+
+        $this->users_without_conversation = [];
+        $this->search_users = '';
+    }
+
+    public function returnConversation(){
         $this->conversations = Conversation::
         where('sender_id',Auth::user()->id)
         ->orWhere('receiver_id',Auth::user()->id)
@@ -66,12 +95,16 @@ class ChatList extends Component
         ->get();
     }
 
-
     public function render()
     {
-        if(isset($this->searchNewCoverUser)){
-            $this->searchedUsersForNewConver = User::where('id','<>',Auth::user()->id)->where('name','LIKE',"%".$this->searchNewCoverUser."%")->get();
+        if($this->search_users != ''){
+            $this->users_without_conversation = User::where('id','<>',Auth::user()->id)->where('name','like','%'.$this->search_users.'%')->get();
+        }else{
+            $this->users_without_conversation = [];
         }
+
+        $this->returnConversation();
+
         return view('livewire.chat.chat-list');
     }
 }

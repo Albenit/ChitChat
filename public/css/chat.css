@@ -1,5 +1,5 @@
 .msg_body_me {
-  background-color: rgb(238, 238, 238);
+background-color: #cbf8c3;
   margin-left: auto;
   color: black;
   border-bottom-right-radius: 0 !important;
@@ -45,7 +45,7 @@ body {
 }
 @media (min-width: 769px) {
   .chat_container {
-    top: 8%;
+    top: 6%;
     height: 89%;
     width: 98%;
     left: 1%;
@@ -297,7 +297,6 @@ body {
   font-size: 16.6px;
   padding: 4px 12px;
   font-weight: normal;
-  background-color: #c5d9eb;
   /* background: linear-gradient(90deg, rgba(127,167,203,0.5662640056022409) 0%, rgba(119,159,193,0.5858718487394958) 100%); */
 }
 .chat_box_container .chatbox_body .msg_body .msg_body_footer {
@@ -333,6 +332,7 @@ body {
   display: flex;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
+      background-color: #F0F2F5;
 }
 .chat_box_container .chatbox_footer .costum_form_group {
   margin: auto 0;
@@ -363,6 +363,8 @@ body {
   font-size: 18px;
   font-weight: bold;
   padding: 4px 5px;
-  color: #0484f3;
+  color: #fff;
+  background-color: #0484f3;
   width: 10%;
+  border-radius: 8px;
 }
